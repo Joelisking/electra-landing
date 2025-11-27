@@ -1,6 +1,7 @@
 // app/sms-opt-in/page.tsx
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 
 export default function SMSOptInPage() {
@@ -19,6 +20,7 @@ export default function SMSOptInPage() {
 
     setSubmitted(true);
   };
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -64,8 +66,121 @@ export default function SMSOptInPage() {
   }
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen ">
+      <nav className="bg-white/10 backdrop-blur-lg border-b border-white/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <div className="flex items-center">
+              <Link href="/" className="flex items-center space-x-2">
+                <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                  <svg
+                    className="w-6 h-6 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <span className="text-white text-xl font-bold">
+                  Electra
+                </span>
+              </Link>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              <Link
+                href="/vote"
+                className="text-white hover:text-blue-200 transition-colors">
+                Vote
+              </Link>
+              <Link
+                href="/sms-opt-in"
+                className="text-white hover:text-blue-200 transition-colors">
+                SMS Notifications
+              </Link>
+              <Link
+                href="/privacy-policy"
+                className="text-white hover:text-blue-200 transition-colors">
+                Privacy
+              </Link>
+              <Link
+                href="/terms-and-conditions"
+                className="text-white hover:text-blue-200 transition-colors">
+                Terms
+              </Link>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="text-white hover:text-blue-200 focus:outline-none">
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  {menuOpen ? (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  )}
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {menuOpen && (
+          <div className="md:hidden bg-white/10 backdrop-blur-lg border-t border-white/20">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              <Link
+                href="/vote"
+                className="block px-3 py-2 rounded-md text-white hover:bg-white/10 transition-colors"
+                onClick={() => setMenuOpen(false)}>
+                Vote
+              </Link>
+              <Link
+                href="/sms-opt-in"
+                className="block px-3 py-2 rounded-md text-white hover:bg-white/10 transition-colors"
+                onClick={() => setMenuOpen(false)}>
+                SMS Notifications
+              </Link>
+              <Link
+                href="/privacy-policy"
+                className="block px-3 py-2 rounded-md text-white hover:bg-white/10 transition-colors"
+                onClick={() => setMenuOpen(false)}>
+                Privacy Policy
+              </Link>
+              <Link
+                href="/terms-and-conditions"
+                className="block px-3 py-2 rounded-md text-white hover:bg-white/10 transition-colors"
+                onClick={() => setMenuOpen(false)}>
+                Terms & Conditions
+              </Link>
+            </div>
+          </div>
+        )}
+      </nav>
+      <div className=" mx-auto py-12 px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="bg-white rounded-t-2xl shadow-xl p-8 text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
