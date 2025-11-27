@@ -225,9 +225,8 @@ export default function SMSOptInPage() {
             </h3>
             <p className="text-gray-700 text-sm">
               You will receive approximately{' '}
-              <strong>2-3 messages per election</strong>. We conduct
-              4-6 elections per year, so you can expect 8-18 messages
-              annually.
+              <strong>2-3 messages per election</strong>. We conduct 1
+              election per year
             </p>
           </div>
 
